@@ -32,17 +32,23 @@ def circle(x=50, y=50, r=50, coloration=(0, 255, 0), fill=True):
                 if (xa - x) ** 2 + (ya - y) ** 2 <= r ** 2:
                     set_pixel(xa, ya, color(0, 255, 0))
 
-def drawLine(xa=10, ya=10, xb=50, yb=50, coloration=(0, 255, 0)):
+def line(xa=10, ya=10, xb=50, yb=50, coloration=(0, 255, 0)):
     ydiff = abs(yb-ya)
     xl = abs(xb-xa)
-    freq = int(xl/ydiff)
+    if(ydiff>0):
+        freq = int(xl/ydiff)
+    else:
+        freq = 0
     c = 0
     for i in range(xl):
-        if c >= freq:
+        if c >= freq and not freq == 0:
             ya+=1
             c = 0
         set_pixel(xa+i, ya, color(coloration))
         c+=1
 
+    if xl==0:
+        for i in range(ydiff):
+            set_pixel(xa, ya+i, color(coloration))
 
-drawLine()
+line(50, 50, 50, 70)
