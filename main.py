@@ -50,5 +50,3 @@ def line(xa=10, ya=10, xb=50, yb=50, coloration=(0, 255, 0)):
     if xl==0:
         for i in range(ydiff):
             set_pixel(xa, ya+i, color(coloration))
-
-line(50, 50, 50, 70)
