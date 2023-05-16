@@ -1,10 +1,5 @@
 from kandinsky import *
-
-for i in range(100):
-  set_pixel(i,i,color(0,0,255))
-  set_pixel(i+100,100,color(255,0,0))
-  set_pixel(i+200,i+100,color(0,255,0))
-
+from math import *
 
 def rectangle(x=10, y=10, width=10, height=10, fill=True):
     for i in range(width):
@@ -25,4 +20,29 @@ def rectangle(x=10, y=10, width=10, height=10, fill=True):
             for o in range(width):
                 set_pixel(x+o, y+i, color(0,0,255))
 
-  
+def circle(x=50, y=50, r=50, fill=True):
+    if fill == False:
+        for angle in range(0, 360):
+            xa = x + int(r * cos(angle * pi / 180))
+            ya = y + int(r * sin(angle * pi / 180))
+            set_pixel(xa, ya, color(0, 255, 0))
+    if fill == True:
+        for xa in range(x - r, x + r + 1):
+            for ya in range(y - r, y + r + 1):
+                if (xa - x) ** 2 + (ya - y) ** 2 <= r ** 2:
+                    set_pixel(xa, ya, color(0, 255, 0))
+
+def drawLine(xa=10, ya=10, xb=50, yb=50):
+    ydiff = abs(yb-ya)
+    xl = abs(xb-xa)
+    freq = int(xl/ydiff)
+    c = 0
+    for i in range(xl):
+        if c >= freq:
+            ya+=1
+            c = 0
+        set_pixel(xa+i, ya, color(0, 255, 255))
+        c+=1
+
+
+drawLine()
